@@ -1,0 +1,28 @@
+Public Class Form1
+    Private ReadOnly Conexion As MySqlConnection
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim Conexion = New MySqlConnection()
+        Dim cadenaConexion As String
+
+        cadenaConexion = "server=10.29.240.9;user id=admin123;password=admin123;database=PRUEBA;Convert Zero Datetime=True"
+
+        Conexion.ConnectionString = cadenaConexion
+        MsgBox("¡Conexión Lograda!")
+
+    End Sub
+
+    Private Sub Enviar_Click(sender As Object, e As EventArgs) Handles Enviar.Click
+        Try
+            Dim Entrada As String = "INSERT INTO prueba (Id_Producto, Nombre, Sexo, Edad, DNI, Ocupación, Sueldo) VALUES ('" + TextNombre.Text + "', '" + TextSexo.Text + "','" + TextEdad.Text + "', 
+                                    '" + TextDNI.Text + "', '" + TextOcupacion.Text + "', '" + TextSueldo.Text + "')"
+            Dim DT As New DataTable
+            Dim Conexion = New MySqlConnection()
+            MsgBox("¡Entrada Insertada!")
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            Conexion.Dispose()
+        End Try
+    End Sub
+End Class
